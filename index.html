@@ -19,353 +19,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    /* Coloring for radio buttons */
 
-    input[type='radio'] {
-        -webkit-appearance: none;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        outline: none;
-        box-shadow: 0 0 0 2px gray;
-    }
-
-        input[type='radio']:before {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 60%;
-            margin: 20% auto;
-            border-radius: 50%;
-        }
-
-        input[type='radio']:checked:before {
-            background: #05a6f0;
-        }
-
-    .default, .minutesSliderRange, .minutesSlider, .hoursSlider, .hoursSliderRange {
-        text-align: center;
-        font-size: 15px;
-        padding-bottom: 20px;
-    }
-
-    .box-minmax {
-        margin: auto;
-        width: 46%;
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        background-color: none;
-        font-weight: 600;
-        margin-top: 10px;
-    }
-
-    .batch_slider {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .immediate_slider {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .engine_slider {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .minutes_slider, .hours_slider {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .designer_slider {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .slider {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 10px;
-        border-radius: 10px;
-        background: #f2f2f2;
-        outline: none;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-        border-style: solid;
-        border-width: 1px;
-    }
-
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #05a6f0;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #f2f2f2;
-            cursor: pointer;
-        }
-
-
-    /* RANGE SLIDER */
-
-    * {
-        &, &:before, &:after
-
-    {
-        box-sizing: border-box;
-    }
-
-    }
-
-    body {
-        font-family: helvetica;
-        padding: 60px 20px;
-
-        @media (min-width: 600px) {
-            padding: 60px;
-        }
-    }
-    /* Create four equal columns that floats next to each other */
-    .column {
-        margin: 0px;
-        float: left;
-        width: 20%;
-        padding: 10px;
-        box-shadow: 1px 1px 3px 2px #ccc;
-        line-height: 1; /* Should be removed. Only for demonstration */
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .product {
-        color: #363d48;
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-    .column h3 {
-        text-align: center;
-        color: #363d48;
-    }
-
-    .column h2 {
-        text-align: center;
-        color: #00aaef;
-    }
-
-    .column p {
-        color: #363d48;
-        text-align: center;
-    }
-
-    #designer {
-        color: #363d48;
-        text-align: center;
-        font-weight: bold;
-        line-height: 1.5;
-    }
-
-    #overage {
-        color: #363d48;
-        text-align: center;
-        font-weight: normal;
-        line-height: 1.5;
-    }
-
-    #output {
-        color: #363d48;
-        text-align: center;
-        font-weight: normal;
-        line-height: 1.5;
-    }
-
-
-    h1 {
-        font-size: 30px;
-        color: #363d48;
-        text-transform: normal;
-        font-weight: 300;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    p {
-        font-size: .8em;
-        color: #363d48;
-        text-transform: normal;
-        font-weight: 300;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    table {
-        margin: auto;
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    .tbl-header {
-        background-color: rgba(54, 61, 72,1);
-        width: 50%;
-        margin: auto;
-        border: 0px solid rgba(54, 61, 72,1);
-        text-align: center;
-        color: #363d48;
-    }
-
-    .tbl-content {
-        height: auto;
-        width: 50%;
-        margin: auto;
-        overflow-x: auto;
-        margin-top: 0px;
-        border: 0px solid rgba(54, 61, 72, 0.3);
-    }
-
-    th {
-        padding: 5px 15px;
-        text-align: center;
-        font-weight: 500;
-        font-size: 0.8em;
-        color: #ffffff;
-        text-transform: normal;
-    }
-
-    td {
-        padding: 25px 10px;
-        text-align: center;
-        vertical-align: middle;
-        font-weight: 500;
-        font-size: 0.8em;
-        color: #363d48;
-        border-bottom: solid 1px rgba(54, 61, 72,0.1);
-    }
-
-    .cores {
-        width: 8%;
-        font-weight: normal;
-        text-align: right;
-    }
-
-    .monthly {
-        width: 22%;
-    }
-
-    .quarterly {
-        width: 22%;
-    }
-
-    .annually {
-        width: 20%;
-    }
-
-    .recommended {
-        font-size: 1.5em;
-        color: #f2f2f2;
-    }
-
-    /* demo styles */
-
-    @import url(https://fonts.googleapis.com/css?family=Open-Sans:400,500,300,700);
-
-    body {
-        background: #ffffff;
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    section {
-        margin: 0px;
-    }
-
-    /* for custom scrollbar for webkit browser*/
-
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    }
-
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    }
-
-
-    .tooltip {
-        position: relative;
-        display: inline-block;
-        border-bottom: 1px dotted #ffffff;
-        font-size: 1em;
-    }
-
-        .tooltip .tooltiptext {
-            font-weight: 300;
-            font-size: .9em;
-            visibility: hidden;
-            width: 200px;
-            background-color: rgba(0, 170, 239, 0.95);
-            color: #fff;
-            text-align: left;
-            border-radius: 4px;
-            padding: 15px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 100%;
-            margin-left: -60px;
-            opacity: 0.3;
-            transition: opacity 0.3s;
-        }
-
-            .tooltip .tooltiptext::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 10%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #00aaef transparent transparent transparent;
-            }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-
-    .button {
-        background-color: #00aaef;
-        border: none;
-        color: white;
-        padding: 10px 30px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 25px;
-        display: block;
-        margin-top: 25px;
-        margin-left: auto;
-        margin-right: auto;
-    }
 </style>
 </head>
 
@@ -425,7 +79,7 @@
   
   
   <div class="box-minmax">
-    <span>5,000</span> <span>500,000+</span>
+    <span>5,000</span> <span id="hoursMinutesRangeMax">500,000+</span>
   </div>
   
     <br />
@@ -439,11 +93,11 @@
 
   <!-- The Server Range Slider with a minimum of 1, maximum of 12, and step size of 1 -->
   <div class="engine_slider">
-    <input type="range" min="2" max="12" value="2" step="2" class="slider" id="serverRange">
+    <input type="range" min="1" max="12" value="1" step="1" class="slider" id="serverRange">
   </div>
   
   <div class="box-minmax">
-    <span>2</span> <span>12</span>
+    <span>1</span> <span>12</span>
   </div>
   
   <br />
@@ -481,10 +135,10 @@
                       <table cellpadding="0" cellspacing="0" border="0" id="tableIn">
 
                           <tbody>
-                              <tr><th colspan="4" class="product">Scout</th></tr>
+                              <tr><th colspan="4" class="product">Pay Per Report <br /> <span id="scoutPlan"> Bronze Plan </span> </th></tr>
                           <td class="cores">
                               <div class="tooltip">
-                                  Designer<br>Servers<br>License<br><span style="font-weight: bold;">Total</span>
+                                  Designer<br>Servers<br><span style="font-weight: bold;">Total</span>
                                   <span class="tooltiptext">This is placeholder text</span>
                               </div>
                           </td>
@@ -493,16 +147,12 @@
                               <br />
                               <span class="serversScoutMonthly" id="serversScoutMonthly"> [Servers] </span>
                               <br />
-                              <span class="scoutPriceMonthly" id="scoutPriceMonthly"> [Price of Scout] </span>
-                              <br />
                               <span class="scoutTotalMonthly" id="scoutTotalMonthly" style="font-weight: 700;"> [Total] </span>
                           </td>
                           <td class="quarterly">
                               <span class="designersScoutQuarterly" id="designersScoutQuarterly"> [Designers] </span>
                               <br />
                               <span class="serversScoutQuarterly" id="serversScoutQuarterly"> [Servers] </span>
-                              <br />
-                              <span class="scoutPriceQuarterly" id="scoutPriceQuarterly"> [Price of Scout] </span>
                               <br />
                               <span class="scoutTotalQuarterly" id="scoutTotalQuarterly" style="font-weight: 700;"> [Total] </span>
                           </td>
@@ -511,16 +161,14 @@
                               <br />
                               <span class="serversScoutAnnually" id="serversScoutAnnually"> [Servers] </span>
                               <br />
-                              <span class="scoutPriceAnnually" id="scoutPriceAnnually"> [Price of Scout] </span>
-                              <br />
                               <span class="scoutTotalAnnually" id="scoutTotalAnnually" style="font-weight: 700;"> [Total] </span>
                           </td>
                           </td>
               </tr>
-              <tr><th colspan="4" class="product">Custom</th></tr>
+              <tr><th colspan="4" class="product">Pay Per Server</th></tr>
           <td class="cores">
               <div class="tooltip">
-                  Designer<br>Servers<br>License<br><span style="font-weight: bold">Total</span>
+                  Designer<br>Servers<br> Cores <br /> <span style="font-weight: bold">Total</span>
                   <span class="tooltiptext">This is placeholder text</span>
               </div>
           </td>
@@ -529,7 +177,6 @@
               <br />
               <span class="serversCustomMonthly" id="serversCustomMonthly"> [Servers] </span>
               <br />
-              <span class="customPriceMonthly" id="customPriceMonthly"> [Price of Custom] </span>
               <br />
               <span class="customTotalMonthly" id="customTotalMonthly" style="font-weight: 700;"> [Total] </span>
           </td>
@@ -538,7 +185,6 @@
               <br />
               <span class="serversCustomQuarterly" id="serversCustomQuarterly"> [Servers] </span>
               <br />
-              <span class="customPriceQuarterly" id="customPriceQuarterly"> [Price of Custom] </span>
               <br />
               <span class="customTotalQuarterly" id="customTotalQuarterly" style="font-weight: 700;"> [Total] </span>
           </td>
@@ -547,13 +193,12 @@
               <br />
               <span class="serversCustomAnnually" id="serversCustomAnnually"> [Servers] </span>
               <br />
-              <span class="customPriceAnnually" id="customPriceAnnually"> [Price of Custom] </span>
               <br />
               <span class="customTotalAnnually" id="customTotalAnnually" style="font-weight: 700;"> [Total] </span>
           </td>
           </tr>
 
-          <tr><th colspan="4" class="product">Windward Recommended</th></tr>
+          <tr><th colspan="4" class="product">Windward Recommended <br /> <span id="serverOrReport"> Pay Per Report </span> </th></tr>
           <tr id="windwardRecommended">
               <td class="cores">
                   <div class="tooltip">
@@ -603,463 +248,6 @@
   
 
     <script  src="js/index.js"></script>
-    <script> 
-
-        //All Prices To Be Changed
-        var priceOfScoutMonthly = 500;
-        var priceOfScoutQuarterly = 1000;
-        var priceOfScoutAnnually = 2000;
-        var priceOfCustomMonthly = 1000;
-        var priceOfCustomQuarterly = 2000;
-        var priceOfCustomAnnually = 4000;
-        var pricePerDesignerMonthly = 614;
-        var pricePerDesignerQuarterly = 1228;
-        var pricePerDesignerAnnually = 2456;
-        var pricePerServerMonthly = 100;
-        var pricePerServerQuarterly = 200;
-        var pricePerServerAnnually = 400;
-
-        //Initialize variables from HTML side. Includes all the different range sliders used.
-        var batchRange = document.getElementById("batchRange");
-        var immediateRange = document.getElementById("immediateRange");
-        var hoursRange = document.getElementById("hoursRange");
-        var minutesRange = document.getElementById("minutesRange");
-        var serverRange = document.getElementById("serverRange");
-        var designerRange = document.getElementById("designerRange");
-        var numServers = serverRange.value;
-        var numDesigners = designerRange.value;
-        var batchNum = batchRange.value;
-        var immediateNum = immediateRange.value;
-        var minutesNum = minutesRange.value;
-        var hoursNum = hoursRange.value;
-
-        //Global Variables for Total Price (No need to update these with prices, just here for easier access)
-        var serverPriceMonthly = 0;
-        var serverPriceQuarterly = 0;
-        var serverPriceAnnually = 0;
-        var designerPriceMonthly = 0;
-        var designerPriceQuarterly = 0;
-        var designerPriceAnnually = 0;
-
-        //Updates all the prices on initial page load
-        updateDesignerPrices(numDesigners);
-        updateServerPrices(numServers);
-
-        //Handles highlighting table rows
-        var highlightColor = "rgba(5, 166, 240, 0.6)";
-        var highlightScout = document.getElementById("tableIn");
-        highlightScout.rows[0].style.backgroundColor = highlightColor;
-        highlightScout.rows[1].style.backgroundColor = highlightColor;
-
-        //Print the value of each range slider into the output text. Default values only. Not updated here.
-        document.getElementById("batchNum").innerHTML = Number(batchRange.value).toLocaleString();
-        document.getElementById("immediateNum").innerHTML = Number(immediateRange.value).toLocaleString();
-        document.getElementById("hoursNum").innerHTML = Number(hoursRange.value).toLocaleString();
-        document.getElementById("minNum").innerHTML = Number(minutesRange.value).toLocaleString();
-        document.getElementById("serverNum").innerHTML = serverRange.value;
-        document.getElementById("designerNum").innerHTML = designerRange.value;
-
-        //Update the current slider value for batch range slider (each time you drag the slider handle).
-        batchRange.oninput = function () {
-
-            //Print new value to corresponding html id.
-            document.getElementById("batchNum").innerHTML = Number(this.value).toLocaleString();
-
-            //Update prices
-            var highlightScout1 = document.getElementById("tableIn").rows[0];
-            var highlightScout2 = document.getElementById("tableIn").rows[1];
-            var highlightCustom1 = document.getElementById("tableIn").rows[2];
-            var highlightCustom2 = document.getElementById("tableIn").rows[3];
-
-            //If range value is less than or equal to 60,000 -> highlight Scout table row and rever Custom table row
-            if (this.value <= 60000) {
-                highlightScout1.style.backgroundColor = highlightColor;
-                highlightScout2.style.backgroundColor = highlightColor;
-                highlightCustom1.style.backgroundColor = "";
-                highlightCustom2.style.backgroundColor = "";
-            }
-
-            //If range value is greater than 60,0000 -> highlight Custom table row and revert Scout table row
-            else {
-                highlightCustom1.style.backgroundColor = highlightColor;
-                highlightCustom2.style.backgroundColor = highlightColor;
-                highlightScout1.style.backgroundColor = "";
-                highlightScout2.style.backgroundColor = "";
-            }
-
-            windwardRecommendsPagesBatch(this.value);
-        }
-
-        //Update the current slider value for immediate range slider (each time you drag the slider handle).
-        immediateRange.oninput = function () {
-
-            //Print new value to corresponding html id.
-            document.getElementById("immediateNum").innerHTML = Number(this.value).toLocaleString();
-
-            //Update prices
-            var highlightScout1 = document.getElementById("tableIn").rows[0];
-            var highlightScout2 = document.getElementById("tableIn").rows[1];
-            var highlightCustom1 = document.getElementById("tableIn").rows[2];
-            var highlightCustom2 = document.getElementById("tableIn").rows[3];
-
-            //If range value is less than or equal to 60,000 -> highlight Scout table row and revert Custom table row
-            if (this.value <= 60000) {
-                highlightScout1.style.backgroundColor = highlightColor;
-                highlightScout2.style.backgroundColor = highlightColor;
-                highlightCustom1.style.backgroundColor = "";
-                highlightCustom2.style.backgroundColor = "";
-            }
-
-            //If range value is greater than 60,0000 -> highlight Custom table row and rever Scout table row
-            else {
-                highlightCustom1.style.backgroundColor = highlightColor;
-                highlightCustom2.style.backgroundColor = highlightColor;
-                highlightScout1.style.backgroundColor = "";
-                highlightScout2.style.backgroundColor = "";
-            }
-
-            windwardRecommendsPagesImmediate(this.value);
-        }
-
-        //Update the current slder value for hours range slider (each time you drag the slider handle).
-        hoursRange.oninput = function () {
-
-            //Print new value to corresponding html id.
-            var output = document.getElementById("hoursNum");
-            output.innerHTML = Number(this.value).toLocaleString();
-
-            //Make max slider range value for both Batch Range Slider and Immediate Range Slider equal to 5 Minutes Range Slider Current Value
-            document.getElementById("batchRange").setAttribute("min", this.value);
-            document.getElementById("immediateRange").setAttribute("min", this.value);
-            document.getElementById("immediateBatchRangeMin").innerHTML = Number(this.value).toLocaleString();
-            document.getElementById("batchNum").innerHTML = Number(this.value).toLocaleString();
-            document.getElementById("immediateNum").innerHTML = Number(this.value).toLocaleString();
-
-            var highlightScout1 = document.getElementById("tableIn").rows[0];
-            var highlightScout2 = document.getElementById("tableIn").rows[1];
-            var highlightCustom1 = document.getElementById("tableIn").rows[2];
-            var highlightCustom2 = document.getElementById("tableIn").rows[3];
-
-            //If range value is less than or equal to 60,000 -> highlight Scout table row and revert Custom table row
-            if (this.value <= 60000) {
-                highlightScout1.style.backgroundColor = highlightColor;
-                highlightScout2.style.backgroundColor = highlightColor;
-                highlightCustom1.style.backgroundColor = "";
-                highlightCustom2.style.backgroundColor = "";
-            }
-
-            //If range value is greater than 60,0000 -> highlight Custom table row and revert Scout table row
-            else {
-                highlightCustom1.style.backgroundColor = highlightColor;
-                highlightCustom2.style.backgroundColor = highlightColor;
-                highlightScout1.style.backgroundColor = "";
-                highlightScout2.style.backgroundColor = "";
-            }
-
-            windwardRecommendsPagesBatch(this.value);
-        }
-
-        //Update the current slider value for minute range slider (each time you drag the slider handle).
-        minutesRange.oninput = function () {
-
-            //Print new value to corresponding html id.
-            var output = document.getElementById("minNum");
-            output.innerHTML = Number(this.value).toLocaleString();
-
-            //Make max slider range value for both Batch Range Slider and Immediate Range Slider equal to 5 Minutes Range Slider Current Value
-            document.getElementById("batchRange").setAttribute("min", this.value);
-            document.getElementById("immediateRange").setAttribute("min", this.value);
-            document.getElementById("immediateBatchRangeMin").innerHTML = Number(this.value).toLocaleString();
-            document.getElementById("batchNum").innerHTML = Number(this.value).toLocaleString();
-            document.getElementById("immediateNum").innerHTML = Number(this.value).toLocaleString();
-
-            var highlightScout1 = document.getElementById("tableIn").rows[0];
-            var highlightScout2 = document.getElementById("tableIn").rows[1];
-            var highlightCustom1 = document.getElementById("tableIn").rows[2];
-            var highlightCustom2 = document.getElementById("tableIn").rows[3];
-
-            //If range value is less than or equal to 60,000 -> highlight Scout table row and revert Custom table row
-            if (this.value <= 60000) {
-                highlightScout1.style.backgroundColor = highlightColor;
-                highlightScout2.style.backgroundColor = highlightColor;
-                highlightCustom1.style.backgroundColor = "";
-                highlightCustom2.style.backgroundColor = "";
-            }
-
-            //If range value is greater than 60,000 -> highlight Custom table row and revert Scout table row
-            else {
-                highlightCustom1.style.backgroundColor = highlightColor;
-                highlightCustom2.style.backgroundColor = highlightColor;
-                highlightScout1.style.backgroundColor = "";
-                highlightScout2.style.backgroundColor = "";
-            }
-
-            windwardRecommendsPagesImmediate(this.value);
-        }
-
-        //Update the current slider value for server range slider (each time you drag the slider handle).
-        serverRange.oninput = function () {
-
-            numServers = this.value;
-            updateServerPrices(numServers);
-
-            //Print new value to corresponding html id.
-            var output = document.getElementById("serverNum");
-            output.innerHTML = this.value;
-        }
-
-        //Update the current slider value for designer range slider (each time you drag the slider handle).
-        designerRange.oninput = function () {
-
-            numDesigners = this.value;
-            updateDesignerPrices(numDesigners);
-
-            //Print new value to corresponding html id.
-            var output = document.getElementById("designerNum");
-            output.innerHTML = this.value;
-        }
-
-        //Onload of the window, hide the batch range slider and the batch number. This way only the immediate range slider and immediate number is shown at first. Initialize any other values.
-        window.onload = function () {
-            document.getElementById("hoursRange").style.display = "none";
-            document.getElementById("hoursSlider").style.display = "none";
-            document.getElementById("batchRange").style.display = "none";
-            document.getElementById("batchNum").style.display = "none";
-            document.getElementById("scoutPriceMonthly").innerHTML = "$" + priceOfScoutMonthly.toLocaleString();
-            document.getElementById("scoutPriceQuarterly").innerHTML = "$" + priceOfScoutQuarterly.toLocaleString();
-            document.getElementById("scoutPriceAnnually").innerHTML = "$" + priceOfScoutAnnually.toLocaleString();
-            document.getElementById("customPriceMonthly").innerHTML = "$" + priceOfCustomMonthly.toLocaleString();
-            document.getElementById("customPriceQuarterly").innerHTML = "$" + priceOfCustomQuarterly.toLocaleString();
-            document.getElementById("customPriceAnnually").innerHTML = "$" + priceOfCustomAnnually.toLocaleString();
-            document.getElementById("batchRange").setAttribute("min", 5000);
-            document.getElementById("immediateRange").setAttribute("min", 5000);
-            document.getElementById("immediateBatchRangeMin").innerHTML = "5,000";
-            windwardRecommendsPagesImmediate(immediateRange.value);
-        };
-
-        //Hide/Show the batch range slider and hide/show the immediate range slider.
-        function showDivBatch() {
-
-            //Initialize variables from HTML side.
-            var checkBatch = document.getElementById("batch");
-            var batchRange = document.getElementById("batchRange");
-            var immediateRange = document.getElementById("immediateRange");
-            var immediateNum = document.getElementById("immediateNum");
-            var batchNum = document.getElementById("batchNum");
-            var hoursSlider = document.getElementById("hoursSlider");
-            var hoursSliderRange = document.getElementById("hoursRange");
-            var hoursSliderNum = document.getElementById("hoursNum");
-            var minutesSlider = document.getElementById("minutesSlider");
-            var minutesSliderRange = document.getElementById("minutesRange");
-
-            //Depending on which radio button is checked, immediate vs batch, show the corresponding range slider and value of the range slider
-            batchRange.style.display = checkBatch.checked ? "block" : "none";
-            batchNum.style.display = checkBatch.checked ? "inline-block" : "none";
-            immediateRange.style.display = checkBatch.checked ? "none" : "block";
-            immediateNum.style.display = checkBatch.checked ? "none" : "inline-block";
-            hoursSlider.style.display = checkBatch.checked ? "block" : "none";
-            hoursSliderRange.style.display = checkBatch.checked ? "block" : "none";
-            hoursSliderNum.style.display = checkBatch.checked ? "inline-block" : "none";
-            minutesSlider.style.display = checkBatch.checked ? "none" : "block";
-            minutesSliderRange.style.display = checkBatch.checked ? "none" : "block";
-
-            if (checkBatch.checked) {
-                windwardRecommendsPagesImmediate(immediateNum);
-            }
-            else {
-                windwardRecommendsPagesBatch(batchNum);
-            }
-        }
-
-        //Update the server prices within the table depending on current number of servers selected
-        function updateServerPrices(numCurServers) {
-
-            //Find the table that will be getting updated
-            var tableIn = document.getElementById("tableIn");
-
-            //Calculate prices based on Monthly/Quarterly/Annually Prices * the current number of servers selected
-            serverPriceMonthly = numCurServers * pricePerServerMonthly;
-            serverPriceQuarterly = numCurServers * pricePerServerQuarterly;
-            serverPriceAnnually = numCurServers * pricePerServerAnnually;
-
-            //Update all table values that involved servers
-            document.getElementById("serversScoutMonthly").innerHTML = "$" + serverPriceMonthly.toLocaleString();
-            document.getElementById("serversScoutQuarterly").innerHTML = "$" + serverPriceQuarterly.toLocaleString();
-            document.getElementById("serversScoutAnnually").innerHTML = "$" + serverPriceAnnually.toLocaleString();
-            document.getElementById("serversCustomMonthly").innerHTML = "$" + serverPriceMonthly.toLocaleString();
-            document.getElementById("serversCustomQuarterly").innerHTML = "$" + serverPriceQuarterly.toLocaleString();
-            document.getElementById("serversCustomAnnually").innerHTML = "$" + serverPriceAnnually.toLocaleString();
-
-            //Update total price of that column + row
-            updateTotal();
-        }
-
-        //Update the designer prices within the table depending on the current number of designers selected
-        function updateDesignerPrices(numCurDesigner) {
-
-            //Find the table that will be getting updated
-            var tableIn = document.getElementById("tableIn");
-
-            //Calculate prices based on Monthly/Quarterly/Annually Prices * the current number of designers selected
-            designerPriceMonthly = numCurDesigner * pricePerDesignerMonthly;
-            designerPriceQuarterly = numCurDesigner * pricePerDesignerQuarterly;
-            designerPriceAnnually = numCurDesigner * pricePerDesignerAnnually;
-
-            //Update all table values that involved designers
-            document.getElementById("designersScoutMonthly").innerHTML = "$" + designerPriceMonthly.toLocaleString();
-            document.getElementById("designersScoutQuarterly").innerHTML = "$" + designerPriceQuarterly.toLocaleString();
-            document.getElementById("designersScoutAnnually").innerHTML = "$" + designerPriceAnnually.toLocaleString();
-            document.getElementById("designersCustomMonthly").innerHTML = "$" + designerPriceMonthly.toLocaleString();
-            document.getElementById("designersCustomQuarterly").innerHTML = "$" + designerPriceQuarterly.toLocaleString();
-            document.getElementById("designersCustomAnnually").innerHTML = "$" + designerPriceAnnually.toLocaleString();
-
-            //Update total price of that column + row
-            updateTotal();
-        }
-
-        //Update all the total prices of each column + row
-        function updateTotal() {
-            document.getElementById("scoutTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly + priceOfScoutMonthly).toLocaleString();
-            document.getElementById("scoutTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly + priceOfScoutQuarterly).toLocaleString();
-            document.getElementById("scoutTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually + priceOfScoutAnnually).toLocaleString();
-            document.getElementById("customTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly + priceOfCustomMonthly).toLocaleString();
-            document.getElementById("customTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly + priceOfCustomQuarterly).toLocaleString();
-            document.getElementById("customTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually + priceOfCustomAnnually).toLocaleString();
-
-            //Call function that determines if we have a better configuration for users selected number of designers and servers
-            //windwardRecommends();
-        }
-
-        //Determine if there is a better configuration for users selected number of designers and servers
-        //Hide Windward Recommends Row if users current configuration is acceptable
-        /*function windwardRecommends() {
-        	
-            //JavaScript doesn't support casting to Floats so by setting the fixed decimal places to 2,
-            //I am able to make my own Float
-            var num = (numServers / numDesigners).toFixed(2);
-        
-            if(num > 1.00) {
-                document.getElementById("windwardRecommended").style.display = "table-row";
-                document.getElementById("windwardRecommendedServers").innerHTML = 1;
-                document.getElementById("windwardRecommendedDesigners").innerHTML = numDesigners;
-                document.getElementById("windwardDesignerPriceMonthly").innerHTML = "$" + (numDesigners * pricePerDesignerMonthly).toLocaleString();
-                document.getElementById("windwardDesignerPriceQuarterly").innerHTML = "$" + (numDesigners * pricePerDesignerQuarterly).toLocaleString();
-                document.getElementById("windwardDesignerPriceAnnually").innerHTML = "$" + (numDesigners * pricePerDesignerAnnually).toLocaleString();
-                document.getElementById("windwardServerPriceMonthly").innerHTML = "$" + (pricePerServerMonthly).toLocaleString();
-                document.getElementById("windwardServerPriceQuarterly").innerHTML = "$" + (pricePerServerQuarterly).toLocaleString();
-                document.getElementById("windwardServerPriceAnnually").innerHTML = "$" + (pricePerServerAnnually).toLocaleString();
-                document.getElementById("windwardTotalPriceMonthly").innerHTML = "$" + ((numDesigners * pricePerDesignerMonthly) + pricePerServerMonthly).toLocaleString(); 
-                document.getElementById("windwardTotalPriceQuarterly").innerHTML = "$" + ((numDesigners * pricePerDesignerMonthly) + pricePerServerQuarterly).toLocaleString();
-                document.getElementById("windwardTotalPriceAnnually").innerHTML = "$" + ((numDesigners * pricePerDesignerAnnually) + pricePerServerAnnually).toLocaleString();
-            }
-            else if(num >= 0.2 || Math.floor(numDesigners / 4) == 0) {
-                document.getElementById("windwardRecommended").style.display = "none";
-            }
-            else {
-                var numServers = Math.floor(numDesigners / 4);
-            	
-                //Only have even number of servers on server range slider so do the same thing with the recommendation
-                //No odd amount of servers
-                numServers % 2 == 0 ? numServers : numServers += 1;
-            	
-                document.getElementById("windwardRecommended").style.display = "table-row";
-                document.getElementById("windwardRecommendedServers").innerHTML = numServers;
-                document.getElementById("windwardRecommendedDesigners").innerHTML = numServers * 4;
-                document.getElementById("windwardDesignerPriceMonthly").innerHTML = "$" + (numDesigners * pricePerDesignerMonthly).toLocaleString();
-                document.getElementById("windwardDesignerPriceQuarterly").innerHTML = "$" + (numDesigners * pricePerDesignerQuarterly).toLocaleString();
-                document.getElementById("windwardDesignerPriceAnnually").innerHTML = "$" + (numDesigners * pricePerDesignerAnnually).toLocaleString();
-                document.getElementById("windwardServerPriceMonthly").innerHTML = "$" + (numServers * pricePerServerMonthly).toLocaleString();
-                document.getElementById("windwardServerPriceQuarterly").innerHTML = "$" + (numServers * pricePerServerQuarterly).toLocaleString();
-                document.getElementById("windwardServerPriceAnnually").innerHTML = "$" + (numServers * pricePerServerAnnually).toLocaleString();
-                document.getElementById("windwardTotalPriceMonthly").innerHTML = "$" + ((numDesigners * pricePerDesignerMonthly) + (numServers * pricePerServerMonthly)).toLocaleString();
-                document.getElementById("windwardTotalPriceQuarterly").innerHTML = "$" + ((numDesigners * pricePerDesignerQuarterly) + (numServers * pricePerServerQuarterly)).toLocaleString();
-                document.getElementById("windwardTotalPriceAnnually").innerHTML = "$" + ((numDesigners * pricePerDesignerAnnually) + (numServers * pricePerServerAnnually)).toLocaleString();
-            }
-        }*/
-
-        //Display Windward Recommends Table Row with updated prices, number of servers, and number of designers
-        function displayWindwardRecommends(servers, designers) {
-            document.getElementById("windwardRecommended").style.display = "table-row";
-            document.getElementById("windwardRecommendedServers").innerHTML = servers;
-            document.getElementById("windwardRecommendedDesigners").innerHTML = designers;
-            document.getElementById("windwardDesignerPriceMonthly").innerHTML = "$" + (designers * pricePerDesignerMonthly).toLocaleString();
-            document.getElementById("windwardDesignerPriceQuarterly").innerHTML = "$" + (designers * pricePerDesignerQuarterly).toLocaleString();
-            document.getElementById("windwardDesignerPriceAnnually").innerHTML = "$" + (designers * pricePerDesignerAnnually).toLocaleString();
-            document.getElementById("windwardServerPriceMonthly").innerHTML = "$" + (servers * pricePerServerMonthly).toLocaleString();
-            document.getElementById("windwardServerPriceQuarterly").innerHTML = "$" + (servers * pricePerServerQuarterly).toLocaleString();
-            document.getElementById("windwardServerPriceAnnually").innerHTML = "$" + (servers * pricePerServerAnnually).toLocaleString();
-            document.getElementById("windwardTotalPriceMonthly").innerHTML = "$" + (servers * pricePerServerMonthly + designers * pricePerDesignerMonthly).toLocaleString();
-            document.getElementById("windwardTotalPriceQuarterly").innerHTML = "$" + (servers * pricePerServerQuarterly + designers * pricePerDesignerQuarterly).toLocaleString();
-            document.getElementById("windwardTotalPriceAnnually").innerHTML = "$" + (servers * pricePerServerAnnually + designers * pricePerDesignerAnnually).toLocaleString();
-        }
-
-        //Based off of users current selection of pages per month, determine optimal number of servers/designers
-        function windwardRecommendsPagesImmediate(pagesImmediate) {
-            var servers = 0;
-            var designers = 0;
-
-            if (pagesImmediate <= 10000) {
-                servers = 1;
-                designers = 4;
-            }
-            else if (pagesImmediate <= 50000) {
-                servers = 3;
-                designers = 12;
-            }
-            else if (pagesImmediate <= 100000) {
-                servers = 4;
-                designers = 16;
-            }
-            else if (pagesImmediate <= 200000) {
-                servers = 6;
-                designers = 24;
-            }
-            else if (pagesImmediate <= 300000) {
-                servers = 7;
-                designers = 28;
-            }
-            else {
-                servers = 10;
-                designers = 40;
-            }
-
-            displayWindwardRecommends(servers, designers);
-        }
-
-        //Based off of users current selection of pages per month, determine optimal number of servers/designers
-        function windwardRecommendsPagesBatch(pagesBatch) {
-            var servers = 0;
-            var designers = 0;
-
-            if (pagesBatch <= 10000) {
-                servers = 1;
-                designers = 2;
-            }
-            else if (pagesBatch <= 50000) {
-                servers = 1;
-                designers = 4;
-            }
-            else if (pagesBatch <= 100000) {
-                servers = 2;
-                designers = 8;
-            }
-            else if (pagesBatch <= 200000) {
-                servers = 4;
-                designers = 16;
-            }
-            else if (pagesBatch <= 300000) {
-                servers = 6;
-                designers = 24;
-            }
-            else {
-                servers = 8;
-                designers = 32;
-            }
-
-            displayWindwardRecommends(servers, designers);
-        }
-
-    </script>
 
 
 </body>

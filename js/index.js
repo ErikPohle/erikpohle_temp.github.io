@@ -1,10 +1,4 @@
 //All Prices To Be Changed
-var priceOfScoutMonthly = 500;
-var priceOfScoutQuarterly = 1000;
-var priceOfScoutAnnually = 2000;
-var priceOfCustomMonthly = 1000;
-var priceOfCustomQuarterly = 2000;
-var priceOfCustomAnnually = 4000;
 var pricePerDesignerMonthly = 614;
 var pricePerDesignerQuarterly = 1228;
 var pricePerDesignerAnnually = 2456;
@@ -57,7 +51,12 @@ batchRange.oninput = function() {
 
 	//Print new value to corresponding html id.
 	document.getElementById("batchNum").innerHTML = Number(this.value).toLocaleString();
-	
+
+    //Make max slider range value for both Batch Range Slider and Immediate Range Slider equal to 5 Minutes Range Slider Current Value
+    document.getElementById("hoursRange").setAttribute("max", this.value);
+    document.getElementById("minutesRange").setAttribute("max", this.value);
+    document.getElementById("hoursMinutesRangeMax").innerHTML = Number(this.value).toLocaleString();
+
 	//Update prices
 	var highlightScout1 = document.getElementById("tableIn").rows[0];
 	var highlightScout2 = document.getElementById("tableIn").rows[1];
@@ -81,6 +80,7 @@ batchRange.oninput = function() {
     }
 
     windwardRecommendsPagesBatch(this.value);
+    scoutPlan(this.value);
 }
 
 //Update the current slider value for immediate range slider (each time you drag the slider handle).
@@ -88,7 +88,12 @@ immediateRange.oninput = function() {
 
 	//Print new value to corresponding html id.
 	document.getElementById("immediateNum").innerHTML = Number(this.value).toLocaleString();
-	
+
+    //Make max slider range value for both Batch Range Slider and Immediate Range Slider equal to 5 Minutes Range Slider Current Value
+    document.getElementById("hoursRange").setAttribute("max", this.value);
+    document.getElementById("minutesRange").setAttribute("max", this.value);
+    document.getElementById("hoursMinutesRangeMax").innerHTML = Number(this.value).toLocaleString();
+
 	//Update prices
 	var highlightScout1 = document.getElementById("tableIn").rows[0];
 	var highlightScout2 = document.getElementById("tableIn").rows[1];
@@ -112,9 +117,10 @@ immediateRange.oninput = function() {
     }
 
     windwardRecommendsPagesImmediate(this.value);
+    scoutPlan(this.value);
 }
 
-//Update the current slder value for hours range slider (each time you drag the slider handle).
+//Update the current slider value for hours range slider (each time you drag the slider handle).
 hoursRange.oninput = function () {
 
 	//Print new value to corresponding html id.
@@ -209,7 +215,18 @@ designerRange.oninput = function() {
 
 	//Print new value to corresponding html id.
 	var output = document.getElementById("designerNum");
-	output.innerHTML = this.value;
+    output.innerHTML = this.value;
+
+    var checkBatch = document.getElementById("batch");
+    var immediateNum = document.getElementById("immediateNum");
+    var batchNum = document.getElementById("batchNum");
+
+    if (checkBatch.checked) {
+        windwardRecommendsPagesImmediate(immediateNum);
+    }
+    else {
+        windwardRecommendsPagesBatch(batchNum);
+    }
 }
 
 //Onload of the window, hide the batch range slider and the batch number. This way only the immediate range slider and immediate number is shown at first. Initialize any other values.
@@ -218,14 +235,11 @@ window.onload = function() {
 	document.getElementById("hoursSlider").style.display = "none";
 	document.getElementById("batchRange").style.display = "none";
 	document.getElementById("batchNum").style.display = "none";
-	document.getElementById("scoutPriceMonthly").innerHTML = "$" + priceOfScoutMonthly.toLocaleString();
-	document.getElementById("scoutPriceQuarterly").innerHTML = "$" + priceOfScoutQuarterly.toLocaleString();
-	document.getElementById("scoutPriceAnnually").innerHTML = "$" + priceOfScoutAnnually.toLocaleString();
-	document.getElementById("customPriceMonthly").innerHTML = "$" + priceOfCustomMonthly.toLocaleString();
-	document.getElementById("customPriceQuarterly").innerHTML = "$" + priceOfCustomQuarterly.toLocaleString();
-	document.getElementById("customPriceAnnually").innerHTML = "$" + priceOfCustomAnnually.toLocaleString();
 	document.getElementById("batchRange").setAttribute("min", 5000);
-	document.getElementById("immediateRange").setAttribute("min", 5000);
+    document.getElementById("immediateRange").setAttribute("min", 5000);
+    document.getElementById("hoursRange").setAttribute("max", 5000);
+    document.getElementById("minutesRange").setAttribute("max", 5000);
+    document.getElementById("hoursMinutesRangeMax").innerHTML = "5,000";
     document.getElementById("immediateBatchRangeMin").innerHTML = "5,000";
     windwardRecommendsPagesImmediate(immediateRange.value);
 };
@@ -304,7 +318,7 @@ function updateDesignerPrices(numCurDesigner) {
 	document.getElementById("designersScoutAnnually").innerHTML = "$" + designerPriceAnnually.toLocaleString();
 	document.getElementById("designersCustomMonthly").innerHTML = "$" + designerPriceMonthly.toLocaleString();
 	document.getElementById("designersCustomQuarterly").innerHTML = "$" + designerPriceQuarterly.toLocaleString();
-	document.getElementById("designersCustomAnnually").innerHTML = "$" + designerPriceAnnually.toLocaleString();
+    document.getElementById("designersCustomAnnually").innerHTML = "$" + designerPriceAnnually.toLocaleString();
 	
 	//Update total price of that column + row
 	updateTotal();
@@ -312,12 +326,12 @@ function updateDesignerPrices(numCurDesigner) {
 
 //Update all the total prices of each column + row
 function updateTotal() {
-	document.getElementById("scoutTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly + priceOfScoutMonthly).toLocaleString();
-	document.getElementById("scoutTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly + priceOfScoutQuarterly).toLocaleString();
-	document.getElementById("scoutTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually + priceOfScoutAnnually).toLocaleString();
-	document.getElementById("customTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly + priceOfCustomMonthly).toLocaleString();
-	document.getElementById("customTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly + priceOfCustomQuarterly).toLocaleString();
-	document.getElementById("customTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually + priceOfCustomAnnually).toLocaleString();
+	document.getElementById("scoutTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly).toLocaleString();
+	document.getElementById("scoutTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly).toLocaleString();
+	document.getElementById("scoutTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually).toLocaleString();
+	document.getElementById("customTotalMonthly").innerHTML = "$" + (designerPriceMonthly + serverPriceMonthly).toLocaleString();
+	document.getElementById("customTotalQuarterly").innerHTML = "$" + (designerPriceQuarterly + serverPriceQuarterly).toLocaleString();
+	document.getElementById("customTotalAnnually").innerHTML = "$" + (designerPriceAnnually + serverPriceAnnually).toLocaleString();
 	
 	//Call function that determines if we have a better configuration for users selected number of designers and servers
 	//windwardRecommends();
@@ -389,31 +403,25 @@ function displayWindwardRecommends(servers, designers) {
 //Based off of users current selection of pages per month, determine optimal number of servers/designers
 function windwardRecommendsPagesImmediate(pagesImmediate) {
     var servers = 0;
-    var designers = 0;
+    var designers = numDesigners;
 
     if (pagesImmediate <= 10000) {
         servers = 1;
-        designers = 4;
     }
     else if (pagesImmediate <= 50000) {
         servers = 3;
-        designers = 12;
     }
     else if (pagesImmediate <= 100000) {
         servers = 4;
-        designers = 16;
     }
     else if (pagesImmediate <= 200000) {
         servers = 6;
-        designers = 24;
     }
     else if (pagesImmediate <= 300000) {
         servers = 7;
-        designers = 28;
     }
     else {
         servers = 10;
-        designers = 40;
     }
 
     displayWindwardRecommends(servers, designers);
@@ -422,32 +430,50 @@ function windwardRecommendsPagesImmediate(pagesImmediate) {
 //Based off of users current selection of pages per month, determine optimal number of servers/designers
 function windwardRecommendsPagesBatch(pagesBatch) {
     var servers = 0;
-    var designers = 0;
+    var designers = numDesigners;
 
     if (pagesBatch <= 10000) {
         servers = 1;
-        designers = 2;
     }
     else if (pagesBatch <= 50000) {
         servers = 1;
-        designers = 4;
     }
     else if (pagesBatch <= 100000) {
         servers = 2;
-        designers = 8;
     }
     else if (pagesBatch <= 200000) {
         servers = 4;
-        designers = 16;
     }
     else if (pagesBatch <= 300000) {
         servers = 6;
-        designers = 24;
     }
     else {
         servers = 8;
-        designers = 32;
     }
 
     displayWindwardRecommends(servers, designers);
+}
+
+function scoutPlan(maxPages) {
+    if (maxPages <= 5000) {
+        document.getElementById("scoutPlan").innerHTML = "Bronze Plan";
+    }
+    else if (maxPages <= 15000) {
+        document.getElementById("scoutPlan").innerHTML = "Silver Plan";
+    }
+    else if (maxPages <= 30000) {
+        document.getElementById("scoutPlan").innerHTML = "Gold Plan";
+    }
+    else {
+        document.getElementById("scoutPlan").innerHTML = "Platinum Plan";
+    }
+}
+
+function serverOrReport(payPerReportPrice, payPerServerPrice) {
+    if (payPerReportPrice < payPerServerPrice) {
+        document.getElementById("serverOrReport").innerHTML = "Pay Per Report";
+    }
+    else {
+        document.getElementById("serverOrReport").innerHTML = "Pay Per Server";
+    }
 }
