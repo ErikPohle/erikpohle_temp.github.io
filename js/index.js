@@ -108,7 +108,7 @@ immediateRange.oninput = function() {
 		highlightCustom2.style.backgroundColor = "";
 	}
 
-	//If range value is greater than 60,0000 -> highlight Custom table row and rever Scout table row
+	//If range value is greater than 60,000 -> highlight Custom table row and rever Scout table row
 	else {
 		highlightCustom1.style.backgroundColor = highlightColor;
 		highlightCustom2.style.backgroundColor = highlightColor;
@@ -454,6 +454,7 @@ function windwardRecommendsPagesBatch(pagesBatch) {
     displayWindwardRecommends(servers, designers);
 }
 
+//If total number of pages is within any of these values, change the scout plan accordingly
 function scoutPlan(maxPages) {
     if (maxPages <= 5000) {
         document.getElementById("scoutPlan").innerHTML = "Bronze Plan";
@@ -469,6 +470,7 @@ function scoutPlan(maxPages) {
     }
 }
 
+//Calculate whether paying per report or paying per server is cheaper and whichever option is cheaper display it
 function serverOrReport(payPerReportPrice, payPerServerPrice) {
     if (payPerReportPrice < payPerServerPrice) {
         document.getElementById("serverOrReport").innerHTML = "Pay Per Report";
