@@ -213,7 +213,7 @@ serverRange.oninput = function() {
 designerRange.oninput = function() {
 
 	numDesigners = this.value; 
-	updateDesignerPrices(numDesigners);
+	//updateDesignerPrices(numDesigners);
 
 	//Print new value to corresponding html id.
 	var output = document.getElementById("designerNum");
@@ -481,3 +481,5 @@ function serverOrReport(payPerReportPrice, payPerServerPrice) {
         document.getElementById("serverOrReport").innerHTML = "Pay Per Server";
     }
 }
+
+function numCores(pagesPerMonth, pages)
