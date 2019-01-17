@@ -217,7 +217,7 @@ designerRange.oninput = function() {
 
 	//Print new value to corresponding html id.
 	var output = document.getElementById("designerNum");
-    output.innerHTML = this.value;
+    //output.innerHTML = this.value;
 
     var checkBatch = document.getElementById("batch");
     var immediateNum = document.getElementById("immediateNum");
