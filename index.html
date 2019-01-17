@@ -135,31 +135,25 @@
                       <table cellpadding="0" cellspacing="0" border="0" id="tableIn">
 
                           <tbody>
-                              <tr><th colspan="4" class="product">Pay Per Report <br /> <span id="scoutPlan"> Bronze Plan </span> </th></tr>
+                              <tr><th colspan="4" class="product"> Pay Per Report <br /> <span id="scoutPlan"> Bronze Plan </span> </th></tr>
                           <td class="cores">
                               <div class="tooltip">
-                                  Designer<br>Servers<br><span style="font-weight: bold;">Total</span>
+                                  Designers: <span id="scoutDesigners"> </span> <br><span style="font-weight: bold;">Total</span>
                                   <span class="tooltiptext">This is placeholder text</span>
                               </div>
                           </td>
                           <td class="monthly">
                               <span class="designersScoutMonthly" id="designersScoutMonthly"> [Designers] </span>
                               <br />
-                              <span class="serversScoutMonthly" id="serversScoutMonthly"> [Servers] </span>
-                              <br />
                               <span class="scoutTotalMonthly" id="scoutTotalMonthly" style="font-weight: 700;"> [Total] </span>
                           </td>
                           <td class="quarterly">
                               <span class="designersScoutQuarterly" id="designersScoutQuarterly"> [Designers] </span>
                               <br />
-                              <span class="serversScoutQuarterly" id="serversScoutQuarterly"> [Servers] </span>
-                              <br />
                               <span class="scoutTotalQuarterly" id="scoutTotalQuarterly" style="font-weight: 700;"> [Total] </span>
                           </td>
                           <td class="annually">
                               <span class="designersScoutAnnually" id="designersScoutAnnually"> [Designers] </span>
-                              <br />
-                              <span class="serversScoutAnnually" id="serversScoutAnnually"> [Servers] </span>
                               <br />
                               <span class="scoutTotalAnnually" id="scoutTotalAnnually" style="font-weight: 700;"> [Total] </span>
                           </td>
@@ -168,7 +162,7 @@
               <tr><th colspan="4" class="product">Pay Per Server</th></tr>
           <td class="cores">
               <div class="tooltip">
-                  Designer<br>Servers<br> Cores <br /> <span style="font-weight: bold">Total</span>
+                  Designers: <span id="customDesigners"> </span><br>Servers: <span id="customServers"> </span> <br> Cores: <span id="customCores"> </span> <br /> <span style="font-weight: bold">Total</span>
                   <span class="tooltiptext">This is placeholder text</span>
               </div>
           </td>
@@ -177,6 +171,7 @@
               <br />
               <span class="serversCustomMonthly" id="serversCustomMonthly"> [Servers] </span>
               <br />
+              <span class="coresCustomMonthly" id="coresCustomMonthly"> [Cores] </span>
               <br />
               <span class="customTotalMonthly" id="customTotalMonthly" style="font-weight: 700;"> [Total] </span>
           </td>
@@ -185,6 +180,7 @@
               <br />
               <span class="serversCustomQuarterly" id="serversCustomQuarterly"> [Servers] </span>
               <br />
+              <span class="coresCustomQuarterly" id="coresCustomQuarterly"> [Cores] </span>
               <br />
               <span class="customTotalQuarterly" id="customTotalQuarterly" style="font-weight: 700;"> [Total] </span>
           </td>
@@ -193,6 +189,7 @@
               <br />
               <span class="serversCustomAnnually" id="serversCustomAnnually"> [Servers] </span>
               <br />
+              <span class="coresCustomAnnually" id="coresCustomAnnually"> [Cores] </span>
               <br />
               <span class="customTotalAnnually" id="customTotalAnnually" style="font-weight: 700;"> [Total] </span>
           </td>
@@ -202,9 +199,11 @@
           <tr id="windwardRecommended">
               <td class="cores">
                   <div class="tooltip">
-                      Total Designers: <span id="windwardRecommendedDesigners"> </span>
+                      Designers: <span id="windwardRecommendedDesigners"> </span>
                       <br />
-                      Total Servers: <span id="windwardRecommendedServers">  </span>
+                      Servers: <span id="windwardRecommendedServers">  </span>
+                      <br />
+                      Cores: <span id="windwardRecommendedCores"> </span>
                       <br />
                       <span id="windwardRecommendedTotal" style="font-weight: 700;"> Total </span>
 
@@ -216,6 +215,8 @@
                   <br />
                   <span id="windwardServerPriceMonthly"> </span>
                   <br />
+                  <span id="windwardCorePriceMonthly"> </span>
+                  <br />
                   <span id="windwardTotalPriceMonthly" style="font-weight: 700;"> </span>
               </td>
               <td class="quarterly">
@@ -223,12 +224,16 @@
                   <br />
                   <span id="windwardServerPriceQuarterly"> </span>
                   <br />
+                  <span id="windwardCorePriceQuarterly"> </span>
+                  <br />
                   <span id="windwardTotalPriceQuarterly" style="font-weight: 700;"> </span>
               </td>
               <td class="annually">
                   <span id="windwardDesignerPriceAnnually"> [Annually] </span>
                   <br />
                   <span id="windwardServerPriceAnnually"> </span>
+                  <br />
+                  <span id="windwardCorePriceAnnually"> </span>
                   <br />
                   <span id="windwardTotalPriceAnnually" style="font-weight: 700;"> </span>
               </td>
