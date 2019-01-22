@@ -2,8 +2,8 @@
 
 //All Prices To Be Changed
 var pricePerDesignerMonthly = 60;
-var pricePerDesignerQuarterly = 54;
-var pricePerDesignerAnnually = 51;
+var pricePerDesignerQuarterly = 162;
+var pricePerDesignerAnnually = 612;
 var pricePerServerMonthly = 100;
 var pricePerServerQuarterly = 200;
 var pricePerServerAnnually = 400;
